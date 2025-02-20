@@ -57,22 +57,22 @@
                             <button class="dropdown-item" type="button">Sign up</button>
                         </div>
                     </div>
-                    <div class="btn-group mx-2">
+                    {{-- <div class="btn-group mx-2">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button">EUR</button>
                             <button class="dropdown-item" type="button">GBP</button>
                             <button class="dropdown-item" type="button">CAD</button>
                         </div>
-                    </div>
-                    <div class="btn-group">
+                    </div> --}}
+                    {{-- <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button">FR</button>
                             <button class="dropdown-item" type="button">AR</button>
                             <button class="dropdown-item" type="button">RU</button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">
@@ -172,7 +172,7 @@
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="/cart" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
@@ -958,9 +958,9 @@
                                 {{ $product->name }}
                             </a>
                                                         <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>${{ number_format($product->price, 2) }}</h5>
+                                <h5>Rs.{{ number_format($product->price, 2) }}</h5>
                                 <h6 class="text-muted ml-2">
-                                    <del>${{ number_format($product->old_price, 2) }}</del>
+                                    <del>Rs.{{ number_format($product->old_price, 2) }}</del>
                                 </h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
@@ -1027,7 +1027,7 @@
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
                 <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Titabar ASTC Bus Stand, Jorhat, Assam</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
@@ -1082,7 +1082,7 @@
                 <p class="mb-md-0 text-center text-md-left text-secondary">
                     &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
                     by
-                    <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                    <a class="text-primary" href="https://htmlcodex.com">COLOR PLUS</a>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
