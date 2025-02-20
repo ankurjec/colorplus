@@ -1,0 +1,201 @@
+/* Asfakur CSS Code */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Itim", cursive; */
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --primary-color: #e55039;
+  --text-color: #1b1b1b;
+  --secondary-color: #b53c29;
+  --heading-font: "Roboto Condensed", sans-serif;
+  --body-font:"Poppins", sans-serif;
+  --box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  --body-text-size: 15px;
+}
+
+/* Top Header */
+.top-header {
+  width: 100vw;
+  height: 40px;
+  background-color: var(--primary-color);
+  padding: 0% 8% 0%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-size: 14px;
+}
+select {
+  background: transparent;
+  padding: 4px;
+  color: white;
+  border: none;
+  outline: none;
+}
+select:hover {
+  color: black;
+}
+.icon-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.call-icon{
+  display: flex;
+  gap: 4px;
+}
+.swiper-slide{
+  display: flex !important;
+}
+.slider-offer{
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  .top-header {
+    display: none;
+  }
+}
+
+/* Main Header CSS Code */
+.main-header {
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0% 8% 0%;
+  /* border-bottom: 1px solid black; */
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+.mobile-menu {
+  display: none;
+}
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+.nav-menu .nav-list {
+  display: flex;
+  gap: 15px;
+}
+.nav-list li {
+  color: white;
+  list-style: none;
+}
+.nav-list li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: var(--body-text-size);
+  font-weight: 500;
+}
+.nav-list li a:hover {
+  color: var(--primary-color);
+}
+.right-menu {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.cart{
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  gap: 4px;
+  cursor: pointer;
+  font-size: var(--body-text-size);
+  font-weight: 600;
+  position: relative;
+}
+.cart:hover {
+  color: var(--secondary-color);
+}
+.cart i {
+  font-size: 28px;
+  color: var(--primary-color);
+  position: relative;
+}
+.cart span {
+  position: absolute;
+  font-size: 12px;
+  top: -10px;
+  right: 10;
+  background-color: aqua;
+  padding: 3px;
+  border-radius: 50px;
+}
+.profile-link {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  gap: 6px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.profile-link a {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  gap: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  text-decoration: none;
+}
+.account {
+  color: #1b1b1b;
+  font-size: var(--body-text-size);
+  font-weight: 600;
+}
+.account:hover {
+  color: var(--secondary-color);
+}
+/* Main Menu End */
+
+/* Responsive Main Menu Start */
+@media only screen and (max-width: 600px) {
+  .mobile-menu {
+    display: block;
+    color: #b53c29;
+    transition: all .3s ease-in-out;
+  }
+  .nav-menu {
+    display: none;
+  }
+  .nav-menu.show {
+    display: block;
+    transition: all .5s ease-in;
+  }
+  .nav-list {
+    width: 60vw;
+    height: 100vh;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 0%;
+    z-index: 999;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 40px;
+  }
+  .nav-list li {
+    color: white;
+    padding-bottom: 10px;
+  }
+  .nav-list li a {
+    color: white;
+  }
+  .nav-list li a:hover {
+    color: black;
+  }
+}
+
+/* Asfakur CSS Code */
