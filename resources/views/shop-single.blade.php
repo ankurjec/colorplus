@@ -651,35 +651,37 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $productDetails->id }}" />
                         <input type="hidden" name="quantity" value="1" />
+                        
                         <div class="price-product">
-                            <span style='font-family:Arial; color: black;'>&#8377;{{ $productDetails->discount_amount ??
-                                $productDetails->price }}</span>
+                            <span style='font-family:Arial; color: black;'>&#8377;{{ $productDetails->discount_amount ?? $productDetails->price }}</span>
                             @if(isset($productDetails->discount_amount))
                             <span>
                                 <del class="text-red">&#8377;{{ $productDetails->price }}</del>
-                                <span class="text-white bg-[#e55039] p-1 text-[14px]">{{
-                                    round($productDetails->discount_percentage) }}% OFF</span>
+                                <span class="text-white bg-[#e55039] p-1 text-[14px]">{{ round($productDetails->discount_percentage) }}% OFF</span>
                             </span>
                             @endif
                         </div>
-
-
-                        @if (($productAlreadyInCart))
+                    
+                        @if ($productAlreadyInCart)
                         <p>
-                            <a href="{{ route('cart') }}"
-                                class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary cart-add">
+                            <a href="{{ route('cart') }}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary cart-add">
                                 Go To Cart
                             </a>
                         </p>
                         <p id="cart-message" style="display: none;">Product already in cart.</p>
                         @else
-                        <p>
+                        <div style="display: flex; gap: 10px;">
                             <button type="submit" class="card-add">Add To Cart</button>
-                        </p>
+                            <a href="{{ route('design.create', ['product_id' => $productDetails->id]) }}" class="create-design btn btn-secondary">
+                                Create Your Design
+                            </a>
+                        </div>
                         @endif
                     </form>
+                    
 
                 </div>
+
             </div>
             <div class="desc-info">
                 <div class="tabContainer">

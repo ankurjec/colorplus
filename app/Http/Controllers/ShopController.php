@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Shoppingcart;
+use App\Models\ProductDesign;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -42,6 +44,39 @@ class ShopController extends Controller
        return view('shop', compact('products', 'categories'));
 
    }
+
+
+   public function create(){
+    return view('shop.shopsingle');
+   }
+
+
+
+   public function store(Request $request)
+   {
+       $request->validate([
+           'design' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure correct file type and size
+       ]);
+   
+       if ($request->hasFile('design')) {
+           $path = $request->file('design')->store('product_designs', 'public'); // Save in `storage/app/public/tshirt_designs/`
+   
+           // Store in the database
+           $design = new ProductDesign();
+           $design->user_id = 1; // For now, setting user_id as 1
+           $design->image_path = $path; // Save the file path
+           $design->save();
+   
+           return response()->json(['message' => 'Design saved successfully!', 'path' => $path]);
+       }
+   
+       return response()->json(['error' => 'File not uploaded'], 400);
+   }
+   
+
+
+
+
 
 //    public function shopsingle($productID)
 //    {

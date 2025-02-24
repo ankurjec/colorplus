@@ -96,6 +96,11 @@ Route::get('temp_logout', function () {
 });
 Route::get('/', [ShopController::class, 'index'])->name('index');
 Route::get('/shop-single/{productID}', [ShopController::class, 'shopsingle'])->name('shop-single');
+
+Route::get('/design/create/{product_id}', [ShopController::class, 'create'])->name('design.create');
+Route::post('/save-design', [ShopController::class, 'store']);
+
+
 Route::get('/cart', [ShoppingcartController::class, 'index'])->name('cart');
 Route::resource('shoppingcart', ShoppingcartController::class);
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
