@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -50,16 +51,16 @@ class ShopController extends Controller
     return view('shop.shopsingle');
    }
 
-
-
    public function store(Request $request)
    {
+       // dd($request);  // ❌ Comment or remove this line
+   
        $request->validate([
            'design' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure correct file type and size
        ]);
    
        if ($request->hasFile('design')) {
-           $path = $request->file('design')->store('product_designs', 'public'); // Save in `storage/app/public/tshirt_designs/`
+           $path = $request->file('design')->store('product_designs', 'public'); // Save in `storage/app/public/product_designs/`
    
            // Store in the database
            $design = new ProductDesign();
@@ -67,11 +68,35 @@ class ShopController extends Controller
            $design->image_path = $path; // Save the file path
            $design->save();
    
-           return response()->json(['message' => 'Design saved successfully!', 'path' => $path]);
+           return response()->json([
+               'message' => 'Design saved successfully!',
+               'path' => asset('storage/' . $path)
+           ]);
        }
    
        return response()->json(['error' => 'File not uploaded'], 400);
    }
+   
+
+//    public function store(Request $request)
+//    {
+//        $request->validate([
+//            'design' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure correct file type and size
+//        ]);
+   
+//        if ($request->hasFile('design')) {
+//            $path = $request->file('design')->store('product_designs', 'public'); // Save in `storage/app/public/tshirt_designs/`
+   
+//            $design = new ProductDesign();
+//            $design->user_id = 1; 
+//            $design->image_path = $path;
+//            $design->save();
+   
+//            return response()->json(['message' => 'Design saved successfully!', 'path' => $path]);
+//        }
+   
+//        return response()->json(['error' => 'File not uploaded'], 400);
+//    }
    
 
 

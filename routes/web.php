@@ -11,6 +11,16 @@ use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+
+
+
+
+
+
+
+Route::post('/save-design', [ShopController::class, 'store']);
+
 Route::get('/sitelogin', [AuthenticatedSessionController::class, 'sitelogin'])->name('sitelogin');
 Route::post('/sitestore', [AuthenticatedSessionController::class, 'sitestore'])->name('sitestore');
 Route::post('/register', [AuthenticatedSessionController::class, 'register'])->name('register');
@@ -98,7 +108,6 @@ Route::get('/', [ShopController::class, 'index'])->name('index');
 Route::get('/shop-single/{productID}', [ShopController::class, 'shopsingle'])->name('shop-single');
 
 Route::get('/design/create/{product_id}', [ShopController::class, 'create'])->name('design.create');
-Route::post('/save-design', [ShopController::class, 'store']);
 
 
 Route::get('/cart', [ShoppingcartController::class, 'index'])->name('cart');

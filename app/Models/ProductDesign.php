@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProductDesign extends Model
 {
     use HasFactory;
+    protected $table = 'product_designs'; // Explicitly setting the table name
+
+    protected $fillable = ['user_id', 'image_path'];
+
 }

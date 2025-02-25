@@ -114,7 +114,7 @@
             <label for="tshirt-design">Predefined Designs:</label>
             <select id="tshirt-design">
                 <option value="">Select a design</option>
-                <option value="https://ourcodeworld.com/public-media/gallery/gallery-5d5b0e95d294c.png" crossorigin="anonymous">Batman</option>
+                <option value="{{ asset('storage/images/images/bat.png') }}" crossorigin="anonymous">Batman</option>
             </select>
 
             <label for="tshirt-custompicture">Upload Design:</label>
@@ -295,4 +295,4 @@ document.getElementById("save-design").addEventListener("click", function () {
     </script>
 
 </body>
-</html>
+</html>s
