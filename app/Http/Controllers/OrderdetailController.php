@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Orderdetail;
 use App\Models\OrderdetailItem;
 use App\Models\Shoppingcart;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,27 +43,70 @@ class OrderdetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //      dd($request);
+    //     // $userId = auth()->user()->id;
+    //     $userId =  $request->user_id;
+    //     $order = new Orderdetail();
+    //     $order->name = $request->name;
+    //     $order->address = $request->address;
+    //     $order->state = $request->state;
+    //     $order->pincode = $request->pincode;
+    //     $order->email = $request->email;
+    //     $order->phone = $request->phone;
+    //     $order->notes = $request->notes;
+    //     $order->user_id = $request->user_id;
+
+    //     $order->save();
+
+    //     $lastId = $order->id;
+
+    //     // get the items from shoppingcarts and save to orderdetail_items
+    //     $items = Shoppingcart::where('user_id', $userId)->get();
+    //     foreach ($items as $item) {
+    //         $eachOrder = new OrderdetailItem();
+    //         $eachOrder->orderdetail_id = $lastId;
+    //         $eachOrder->product_id = $item->product_id;
+    //         $eachOrder->product_name = $item->product->name;
+    //         $eachOrder->product_price = $item->product->price;
+    //         $eachOrder->product_quantity = $item->quantity;
+    //         $eachOrder->save();
+    //     }
+    //     //remove items from cart
+    //     $deleted = Shoppingcart::where('user_id', $userId)->delete();
+
+    //     //return redirect()->route('cart')->with('success', 'You Order has been placed successfully.');
+    //     return redirect('/thankyou')->with('success', 'You Order has been placed successfully.');
+    // }
+
+
+
     public function store(Request $request)
     {
-        // dd($request);
-        $userId = auth()->user()->id;
-
+        // Fetch user name using user_id
+        $user = User::find($request->user_id);
+    
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+    
+        // Create new order
         $order = new Orderdetail();
-        $order->name = $request->name;
-        $order->address = $request->address;
-        $order->state = $request->state;
-        $order->pincode = $request->pincode;
-        $order->email = $request->email;
-        $order->phone = $request->phone;
-        $order->notes = $request->notes;
-        $order->user_id = $userId;
-
+        $order->name = $user->name; // Fetching name from users table
+        $order->address = "Dummy Address";
+        $order->state = "Dummy State";
+        $order->pincode = "123456";
+        $order->email = "dummy@example.com";
+        $order->phone = "9999999999";
+        $order->notes = "Dummy Notes";
+        $order->user_id = $request->user_id;
+    
         $order->save();
-
         $lastId = $order->id;
-
-        // get the items from shoppingcarts and save to orderdetail_items
-        $items = Shoppingcart::where('user_id', $userId)->get();
+    
+        // Get items from shopping cart
+        $items = Shoppingcart::where('user_id', $request->user_id)->get();
         foreach ($items as $item) {
             $eachOrder = new OrderdetailItem();
             $eachOrder->orderdetail_id = $lastId;
@@ -71,12 +116,18 @@ class OrderdetailController extends Controller
             $eachOrder->product_quantity = $item->quantity;
             $eachOrder->save();
         }
-        //remove items from cart
-        $deleted = Shoppingcart::where('user_id', $userId)->delete();
-
-        //return redirect()->route('cart')->with('success', 'You Order has been placed successfully.');
-        return redirect('/thankyou')->with('success', 'You Order has been placed successfully.');
+    
+        // Remove items from cart
+        Shoppingcart::where('user_id', $request->user_id)->delete();
+    
+        return redirect('/thankyou')->with('success', 'Your order has been placed successfully.');
     }
+
+
+
+
+
+
 
     // public function edit(Request $request): View
     // {

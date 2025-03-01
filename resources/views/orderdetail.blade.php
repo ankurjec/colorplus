@@ -1,5 +1,4 @@
 @extends('layouts.site-header')
-
 @section('css')
     @parent
     {{-- <style>
@@ -178,12 +177,8 @@
     </style>
 @endsection
 
-
-
 @section('page-title', 'Checkout')
 @section('content')
-
-
 
     <div class="site-section">
 
@@ -295,7 +290,6 @@
             </form>
         </div> --}}
 
-
         {{-- New Code --}}
         <div class="px-[8%] py-[5%] w-[100vw]">
             <!-- Checkout Page Card Design -->
@@ -405,7 +399,6 @@
                     </div>
                   </div>
       
-      
                   <!-- Add New Address Popup -->
                   <!-- Model Popup -->
                     <div
@@ -483,9 +476,6 @@
                       <button id="payment-btn">Change</button>
                     </div>
                   </div>
-      
-      
-      
                   <!-- Payment Accordination -->
                   <div class="hidden" id="payment-list">
                     <div class="mt-4">
@@ -539,18 +529,21 @@
                   </div>
                 </div>
               </div>
-      
-      
               <!-- Placed Order Card Design -->
-              <div
+              {{-- <div
                 class="w-[24vw] h-auto max-sm:w-[100%] rounded-lg p-[20px] border-2"
               >
                 <div>
-                  <div
-                    class="px-4 py-2 bg-[#e55039] hover:bg-[#b53c29] text-white cursor-pointer rounded-lg text-center font-semibold "
-                  >
-                    <button>Placed Order</button>
-                  </div>
+                  <form action="{{ route('orderdetail.store') }}" method="POST">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="px-4 py-2 bg-[#e55039] hover:bg-[#b53c29] text-white cursor-pointer rounded-lg text-center font-semibold"
+                    >
+                        Placed Order
+                    </button>
+                </form>
+                
                   <div class="text-center mt-2 pb-4 border-b-2">
                     By placing your order, you agree to
                     <span class="font-medium">Zenith Agro Science's</span>
@@ -565,7 +558,33 @@
                       href="/"
                       >conditions of use.</a
                     >
-                  </div>
+                  </div> --}}
+
+                  <div class="w-[24vw] h-auto max-sm:w-[100%] rounded-lg p-[20px] border-2">
+                    <div>
+                        <form action="{{ route('orderdetail.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                            <input type="hidden" name="selected_address" id="selected_address" value="">
+                
+                            <button
+                                type="submit"
+                                class="px-4 py-2 bg-[#e55039] hover:bg-[#b53c29] text-white cursor-pointer rounded-lg text-center font-semibold"
+                            >
+                                Placed Order
+                            </button>
+                        </form>
+                
+                        <div class="text-center mt-2 pb-4 border-b-2">
+                            By placing your order, you agree to
+                            <span class="font-medium">Zenith Agro Science's</span>
+                            <a class="text-blue-600 cursor-pointer hover:text-blue-800" href="/">privacy notice</a>
+                            and
+                            <a class="text-blue-600 cursor-pointer hover:text-blue-800" href="/">conditions of use.</a>
+                        </div>
+                    </div>
+                </div>
+                
                   <div>
                     <div class="text-[18px] font-bold py-2">Order Summary</div>
                     <div>
@@ -595,11 +614,6 @@
           </div>
     </div>
 
-
-
-
-
-
 @endsection
 @section('scripts')
 
@@ -610,27 +624,32 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/aos.js"></script>
-
     <script src="js/main.js"></script>
-
     <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    let addressRadios = document.querySelectorAll('input[name="address"]');
+    let selectedAddressInput = document.getElementById("selected_address");
+
+    addressRadios.forEach(radio => {
+        radio.addEventListener("change", function () {
+            selectedAddressInput.value = this.value;
+        });
+    });
+});
         $(document).ready(function() {
             function alignModal() {
                 var modalDialog = $(this).find(".modal-dialog");
-
                 // Applying the top margin on modal to align it vertically center
                 modalDialog.css("margin-top", Math.max(0, ($(window).height() - modalDialog.height()) / 2));
             }
             // Align modal when it is displayed
             $(".modal").on("shown.bs.modal", alignModal);
-
             // Align modal when user resize the window
             $(window).on("resize", function() {
                 $(".modal:visible").each(alignModal);
             });
         });
-
-
         // Model Popup JS Code
     document
       .getElementById("add-address")

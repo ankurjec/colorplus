@@ -11,14 +11,6 @@ use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
-
-
-
-
-
-
-
 Route::post('/save-design', [ShopController::class, 'store']);
 
 Route::get('/sitelogin', [AuthenticatedSessionController::class, 'sitelogin'])->name('sitelogin');
