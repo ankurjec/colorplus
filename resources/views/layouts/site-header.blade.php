@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>ZENITH AGRO SCIENCES</title>
+    <title>COLOR PLUS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favlogo.ico') }}">
@@ -484,7 +484,7 @@
         </div>
     </footer> --}}
     {{-- New Footer Added --}}
-    <footer>
+    {{-- <footer>
         <div class="footer-section">
             <!-- Footer Column One -->
             <div class="footer-one">
@@ -544,7 +544,7 @@
                 ©2024 <span><a href="/">Zenith Agro Sciences</a></span>, All rights reserved.
             </p>
         </div>
-    </footer>
+    </footer> --}}
 
     @yield('scripts')
     <script>

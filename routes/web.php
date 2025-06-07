@@ -27,7 +27,7 @@ Route::patch('/updatesiteuserpass', [ProfileController::class, 'updatesiteuserpa
 //     return view('dashboard');
 // })->name('home');
 Route::get('/contact', function () {
-    return view('contact');
+    return view('contact/index');
 });
 
 // Update Route Login and Register

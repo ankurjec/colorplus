@@ -42,7 +42,7 @@ class ShopController extends Controller
        $products = Product::with('productCategory', 'specification', 'images')->latest()->get();
        $categories = ProductCategory::all();
        // dd($products);
-       return view('shop', compact('products', 'categories'));
+       return view('shop.index', compact('products', 'categories'));
 
    }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('state')->nullable();
             $table->unsignedInteger('pincode')->nullable();
-            $table->astring('email')->nullable();
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('notes')->nullable();
             $table->integer('user_id')->nullable();
